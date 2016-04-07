@@ -1,10 +1,13 @@
 
 import React from 'react';
 import PotholeRow from './pothole-row';
+import PotholeDuration from './pothole-duration';
 
 const PotholeTable = ({potholes}) => {
 
   let rows = [];
+
+  console.log(potholes);
 
   potholes.forEach(function(pothole, index) {
     if (pothole.status === 'Completed') {

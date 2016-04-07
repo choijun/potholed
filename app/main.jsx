@@ -1,15 +1,15 @@
 
-import * as service from './src/services/pothole-service';
 import React from 'react';
 import {render} from 'react-dom';
-import PotholeTable from './src/components/pothole-table';
+import * as service from './src/services/pothole-service';
+import FilterablePotholeTable from './src/filterable-pothole-table';
 
 service.findAll()
 	.then(potholes => {
 
-		potholes = service.removeDuplicateReports(potholes);
+		let cleanedPotholes = service.removeDuplicateReports(potholes);
 
-		console.log(potholes);
+		//console.log(potholes);
 
 		// init shell
 		renderShell();
@@ -18,7 +18,7 @@ service.findAll()
 		    var shell = document.createElement('main');
 		    shell.className = 'app-shell';
 		    document.body.appendChild(shell);
-		    render(<PotholeTable potholes={potholes} />, shell);
+		    render(<FilterablePotholeTable potholes={cleanedPotholes} />, shell);
 		}
 
 /*

@@ -3,18 +3,31 @@ import PotholeTable from './components/pothole-table';
 
 class FilterablePotholeTable extends React.Component {
 
-  componentWillMount: function () {
-    $.get(this.props.url, function (data) {
-      this.setState(data);
-    }.bind(this));
-  },
+  constructor(props) {
+    super(props);
 
+    this.handleUserInput = this.handleUserInput.bind(this);
+
+    this.state = {
+      filterText: '',
+      inStockOnly: false
+    }
+
+  }
+
+  handleUserInput(filterText, inStockOnly) {
+    this.setState({
+      filterText: filterText,
+      inStockOnly: inStockOnly
+    });
+  }
 
   render() {
     return (
-      <PotholeTable potholes={potholes} />
-    );
+      <PotholeTable potholes={this.props.potholes} />
+    )
   }
+
 }
 
 export default FilterablePotholeTable;

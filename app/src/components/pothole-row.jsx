@@ -1,13 +1,21 @@
 import React from 'react';
+import PotholeDuration from './pothole-duration';
 
-const PotholeRow = ({address, date_open, date_closed, number_patched}) => {
-  return (
-    <tr>
-      <td><strong>{address}</strong></td>
-      <td>--</td>
-      <td>{number_patched}</td>
-    </tr>
-  );
+class PotholeRow extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <tr>
+        <td><strong>{this.props.address}</strong></td>
+        <td><PotholeDuration start="{this.props.date_open}" end="{this.props.date_closed}" /></td>
+        <td>{this.props.number_patched}</td>
+      </tr>
+    )
+  }
 };
 
 export default PotholeRow;
