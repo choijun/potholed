@@ -53,6 +53,11 @@
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	service.findAll().then(function (potholes) {
+	
+	  potholes = service.removeDuplicateReports(potholes);
+	
+	  console.log(potholes);
+	
 	  var _service$getPercentFi = service.getPercentFilled(potholes);
 	
 	  var total = _service$getPercentFi.total;
@@ -64,8 +69,9 @@
 	  document.getElementById("percent_filled").innerHTML = percent + '% Completed, ' + filled + ' total potholes filled.';
 	
 	  var html = '';
+	
 	  potholes.forEach(function (pothole) {
-	    return html += '<tr><td>' + pothole.creation_date + '</td><td>' + pothole.status + '</td><td>' + pothole.number_of_potholes_filled_on_block + '</td><td>' + pothole.most_recent_action + '</td></tr>';
+	    return html += '<tr><td>' + pothole.creation_date + '</td><td>' + pothole.street_address + ', ' + pothole.zip + '</td><td>' + pothole.status + '</td><td>' + pothole.number_of_potholes_filled_on_block + '</td><td>' + pothole.most_recent_action + '</td></tr>';
 	  });
 	  document.getElementById("potholes").innerHTML = html;
 	}).catch(function (e) {
@@ -109,6 +115,7 @@
 	
 		potholes.forEach(function (pothole) {
 			if (pothole.status === 'Completed') {
+	
 				closed_reports++;
 	
 				if (pothole.most_recent_action === 'Pothole Patched') {
@@ -120,6 +127,20 @@
 		percent = (closed_reports / total * 100).toFixed(2);
 	
 		return { total: total, filled: filled, percent: percent };
+	};
+	
+	var removeDuplicateReports = exports.removeDuplicateReports = function removeDuplicateReports(potholes) {
+	
+		var original = potholes;
+		var cleanData = [];
+	
+		original.forEach(function (pothole) {
+			if (pothole.status === 'Open' || pothole.status === 'Completed') {
+				cleanData.push(pothole);
+			}
+		});
+	
+		return cleanData;
 	};
 
 /***/ }
