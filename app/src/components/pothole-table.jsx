@@ -7,7 +7,7 @@ const PotholeTable = ({potholes}) => {
 
   let rows = [];
 
-  console.log(potholes);
+  //console.log(potholes);
 
   potholes.forEach(function(pothole, index) {
     if (pothole.status === 'Completed') {

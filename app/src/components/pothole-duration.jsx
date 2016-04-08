@@ -4,16 +4,21 @@ import moment from 'moment';
 class PotholeDuration extends React.Component {
 
   constructor(props) {
+
     super(props);
 
-    let start = props.date_open;
-    let end = props.date_closed;
+    const start = moment(props.date_open);
+    const end = moment(props.date_closed);
+
+    this.duration = moment.duration(end - start, 'days').humanize();
+
+    console.log(this.duration);
 
   }
 
   render() {
     return (
-      <span>A thing</span>
+      <span>{this.duration}</span>
     )
   }
 };
