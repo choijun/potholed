@@ -4,8 +4,7 @@
   "description": "Sort through pothole data from Chicago's data portal at https://data.cityofchicago.org/Service-Requests/311-Service-Requests-Pot-Holes-Reported/7as2-ds3y.",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
-    "webpack": "npm run webpack"
+    "start": "webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback"
   },
   "author": "Beck Kramer",
   "license": "MIT",

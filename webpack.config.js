@@ -3,7 +3,6 @@ var merge = require('webpack-merge');
 var webpack = require('webpack');
 var TARGET = process.env.TARGET || 'dev';
 var ROOT_PATH = path.resolve(__dirname);
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var common = {
 
@@ -17,12 +16,6 @@ var common = {
         path: path.resolve(ROOT_PATH, 'build'),
         filename: 'bundle.js'
     },
-
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'React ES2015'
-        })
-    ],
 
     module: {
         loaders: [
